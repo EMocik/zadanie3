@@ -12,6 +12,4 @@ public class BookRequest {
     private int pages;
     private int amount;
     private int lendCount;
-
-
 }

@@ -21,10 +21,16 @@ public class Book {
     private String name;
     private String description;
     private int pages;
-    private double amount;
+    private int amount;
     private int lendCount;
+    private Long author;
 
     public Book(BookRequest bookRequest) {
-
+        this.name = bookRequest.getName();
+        this.description = bookRequest.getDescription();
+        this.pages = bookRequest.getPages();
+        this.amount = bookRequest.getAmount();
+        this.lendCount = bookRequest.getLendCount();
+        this.author = bookRequest.getAuthor();
     }
 }

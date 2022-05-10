@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface IBookRepository extends JpaRepository<Book, Long> {
 
     @Override
-    <S extends Book> S save(S s);
+    Book save(Book b);
 
     @Override
     Optional<Book> findById(Long aLong);
@@ -21,4 +21,6 @@ public interface IBookRepository extends JpaRepository<Book, Long> {
 
     @Override
     void delete(Book book);
+
+    Book findBookById(long id);
 }
