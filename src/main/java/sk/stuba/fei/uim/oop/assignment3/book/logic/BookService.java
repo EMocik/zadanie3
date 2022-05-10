@@ -36,7 +36,6 @@ public class BookService implements IBookService {
         book = this.bookRepository.save(book);
         this.authorService.getById(bookRequest.getAuthor()).getBooks().add(book);
         return book;
-
     }
 
 
