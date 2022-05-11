@@ -19,7 +19,7 @@ public class ListOfLendedBooks {
     private Long id;
     private boolean lended;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     private List<Book> lendingList;
 
     public ListOfLendedBooks(ListRequest listRequest){
