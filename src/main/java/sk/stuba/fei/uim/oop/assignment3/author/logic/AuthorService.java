@@ -1,18 +1,13 @@
 package sk.stuba.fei.uim.oop.assignment3.author.logic;
 
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.author.data.IAuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.web.body.AuthorRequest;
 import sk.stuba.fei.uim.oop.assignment3.author.web.body.AuthorUpdateRequest;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.data.IBookRepository;
-import sk.stuba.fei.uim.oop.assignment3.book.logic.BookService;
-import sk.stuba.fei.uim.oop.assignment3.book.logic.IBookService;
-import sk.stuba.fei.uim.oop.assignment3.book.web.body.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 
 import java.util.List;
@@ -22,9 +17,6 @@ public class AuthorService implements IAuthorService {
 
     @Autowired
     private IAuthorRepository authorRepository;
-
-    @Autowired
-    private IBookService bookService;
 
     @Autowired
     private IBookRepository bookRepository;
@@ -63,9 +55,9 @@ public class AuthorService implements IAuthorService {
     public void delete(Long id) throws NotFoundException {
         Author author = this.getById(id);
         List<Book> books = bookRepository.findAll();
-        for (int i = 0; i < books.size() ; i++) {
-            if(books.get(i).getAuthor().equals(author.getId())){
-                this.bookRepository.delete(books.get(i));
+        for (Book book : books) {
+            if (book.getAuthor().equals(author.getId())) {
+                this.bookRepository.delete(book);
             }
         }
         author.getBooks().clear();

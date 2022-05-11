@@ -5,13 +5,13 @@ import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 
 @Getter
 public class BookResponse {
-    private Long id;
-    private String name;
-    private String description;
-    private int pages;
-    private int amount;
-    private int lendCount;
-    private Long author;
+    private final Long id;
+    private final String name;
+    private final String description;
+    private final int pages;
+    private final int amount;
+    private final int lendCount;
+    private final Long author;
 
     public BookResponse(Book book) {
         this.id = book.getId();

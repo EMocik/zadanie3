@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
-import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListRequest;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,7 +22,4 @@ public class ListOfLendedBooks {
     @OneToMany
     private List<Book> lendingList = new ArrayList<>();
 
-    public ListOfLendedBooks(ListRequest listRequest){
-        this.id = listRequest.getId();
-    }
 }

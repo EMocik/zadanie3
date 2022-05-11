@@ -5,13 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
-import sk.stuba.fei.uim.oop.assignment3.book.web.body.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.logic.IListService;
 import sk.stuba.fei.uim.oop.assignment3.list.web.body.BookIDRequest;
-import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListRequest;
 import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListResponse;
 
 import java.util.List;
@@ -35,7 +32,7 @@ public class ListController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ListResponse getListById(@PathVariable("id") long id) throws NotFoundException {
+    public ListResponse getListById(@PathVariable("id") long id){
         return new ListResponse(this.listService.getById(id));
     }
 
@@ -50,7 +47,7 @@ public class ListController {
     }
 
     @GetMapping(value = "/{id}/lend")
-    public void lendTheList(@PathVariable("id") Long id) throws NotFoundException, IllegalOperationException {
+    public void lendTheList(@PathVariable("id") Long id) throws IllegalOperationException {
         this.listService.lendTheList(id);
     }
 

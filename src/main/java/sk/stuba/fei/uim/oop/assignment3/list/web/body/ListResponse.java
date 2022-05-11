@@ -8,9 +8,9 @@ import java.util.List;
 
 @Getter
 public class ListResponse {
-    private long id;
-    private List<Book> lendingList;
-    private boolean lended;
+    private final long id;
+    private final List<Book> lendingList;
+    private final boolean lended;
 
 
     public ListResponse(ListOfLendedBooks lendingList) {
