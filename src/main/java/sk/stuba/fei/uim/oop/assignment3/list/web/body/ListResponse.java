@@ -8,13 +8,14 @@ import java.util.List;
 
 @Getter
 public class ListResponse {
-    private Long id;
-    private boolean lended;
+    private long id;
     private List<Book> lendingList;
+    private boolean lended;
+
 
     public ListResponse(ListOfLendedBooks lendingList) {
         this.id = lendingList.getId();
-        this.lended = lendingList.isLended();
         this.lendingList = lendingList.getLendingList();
+        this.lended = lendingList.isLended();
     }
 }

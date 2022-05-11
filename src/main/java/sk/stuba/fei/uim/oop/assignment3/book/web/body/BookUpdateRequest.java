@@ -9,6 +9,7 @@ public class BookUpdateRequest {
     private String name;
     private String description;
     private Long author;
-    private int pages;
-
+    private Integer pages;
+    private int amount;
+    private int lendCount;
 }

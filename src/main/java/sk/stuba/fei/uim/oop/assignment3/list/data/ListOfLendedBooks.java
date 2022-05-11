@@ -7,6 +7,7 @@ import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListRequest;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,8 @@ public class ListOfLendedBooks {
     private Long id;
     private boolean lended;
 
-    @OneToMany(orphanRemoval = true)
-    private List<Book> lendingList;
+    @OneToMany
+    private List<Book> lendingList = new ArrayList<>();
 
     public ListOfLendedBooks(ListRequest listRequest){
         this.id = listRequest.getId();

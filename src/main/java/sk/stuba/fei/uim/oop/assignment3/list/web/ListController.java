@@ -10,6 +10,7 @@ import sk.stuba.fei.uim.oop.assignment3.book.web.body.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exceptions.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.logic.IListService;
+import sk.stuba.fei.uim.oop.assignment3.list.web.body.BookIDRequest;
 import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListRequest;
 import sk.stuba.fei.uim.oop.assignment3.list.web.body.ListResponse;
 
@@ -44,12 +45,17 @@ public class ListController {
     }
 
     @PostMapping(value = "/{id}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ListResponse addToList(@PathVariable("id") Long id, @RequestBody Book body) throws NotFoundException, IllegalOperationException {
-        return new ListResponse(this.listService.addToList(id, body));
+    public ListResponse addToList(@PathVariable("id") Long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException, IllegalOperationException {
+        return new ListResponse(this.listService.addToList(id, bookIDRequest));
     }
 
-    @GetMapping(value = "/{id}/lend", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}/lend")
     public void lendTheList(@PathVariable("id") Long id) throws NotFoundException, IllegalOperationException {
         this.listService.lendTheList(id);
+    }
+
+    @DeleteMapping(value = "/{id}/remove")
+    public void deleteFromList(@PathVariable("id") long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException {
+        this.listService.deleteFromList(id, bookIDRequest);
     }
 }

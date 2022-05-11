@@ -56,6 +56,12 @@ public class BookService implements IBookService {
         if (bookUpdateRequest.getDescription() != null) {
             book.setDescription(bookUpdateRequest.getDescription());
         }
+        if (bookUpdateRequest.getAuthor() != null && bookUpdateRequest.getAuthor() != 0) {
+            book.setAuthor(bookUpdateRequest.getAuthor());
+        }
+        if (bookUpdateRequest.getPages() != null && bookUpdateRequest.getPages() != 0) {
+            book.setPages(bookUpdateRequest.getPages());
+        }
         return this.bookRepository.save(book);
     }
 

@@ -22,6 +22,7 @@ public class BookController {
     @Autowired
     private IBookService bookService;
 
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookResponse> createBook(@RequestBody BookRequest body) throws NotFoundException {
         return new ResponseEntity<>(new BookResponse(this.bookService.create(body)), HttpStatus.CREATED);
@@ -39,6 +40,7 @@ public class BookController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookResponse> updateBook(@PathVariable("id") Long id, @RequestBody BookUpdateRequest body) throws NotFoundException {
+
         return new ResponseEntity<>(new BookResponse(this.bookService.update(id, body)), HttpStatus.OK);
     }
 
@@ -56,5 +58,10 @@ public class BookController {
     @PostMapping(value = "/{id}/amount", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Amount> addAmount(@PathVariable("id") Long id, @RequestBody Amount body) throws NotFoundException {
         return new ResponseEntity<>(new Amount(this.bookService.addAmount(id, body.getAmount())), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}/lendCount", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Amount> getlendCount(@PathVariable("id") Long id) throws NotFoundException {
+        return new ResponseEntity<>(new Amount(this.bookService.getById(id).getLendCount()), HttpStatus.OK);
     }
 }

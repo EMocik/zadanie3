@@ -11,6 +11,4 @@ import java.util.List;
 @Setter
 public class ListRequest {
     private Long id;
-    private boolean lended;
-    private List<Book> lendingList;
 }
