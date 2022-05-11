@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop.assignment3.book.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 
 import java.util.List;
 import java.util.Optional;

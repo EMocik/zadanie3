@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop.assignment3.list.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
@@ -52,7 +51,7 @@ public class ListService implements IListService{
     }
 
     @Override
-    public void lendTheList(long id) throws NotFoundException, IllegalOperationException {
+    public void lendTheList(long id) throws IllegalOperationException {
         ListOfLendedBooks listOfLendedBooks = this.getUnlended(id);
         listOfLendedBooks.setLended(true);
         listOfLendedBooks.getLendingList().forEach(book -> book.setLendCount(book.getLendCount()+1));

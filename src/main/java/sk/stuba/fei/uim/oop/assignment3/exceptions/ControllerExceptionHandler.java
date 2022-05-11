@@ -14,4 +14,5 @@ public class ControllerExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalOperationException.class)
     public void handleIllegalOperationException() {}
+
 }
