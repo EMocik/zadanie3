@@ -37,11 +37,7 @@ public class BookService implements IBookService {
 
     @Override
     public Book getById(Long id) throws NotFoundException {
-        Book book = this.bookRepository.findBookById(id);
-        if (book == null) {
-            throw new NotFoundException();
-        }
-        return book;
+        return this.bookRepository.findById(id).orElseThrow(NotFoundException::new);
     }
     @Override
     public Book update(Long id, BookUpdateRequest bookUpdateRequest) throws NotFoundException {
@@ -63,14 +59,12 @@ public class BookService implements IBookService {
 
     @Override
     public void delete(Long id) throws NotFoundException {
-        Book book = this.bookRepository.findBookById(id);
-        if(book != null){
-            Author author = authorService.getById(book.getAuthor());
-            if(author != null){
-                List<Book> books = author.getBooks();
-                books.remove(book);
-                author.setBooks(books);
-            }
+        Book book = this.bookRepository.findById(id).orElseThrow(NotFoundException::new);
+        Author author = authorService.getById(book.getAuthor());
+        if(author != null){
+            List<Book> books = author.getBooks();
+            books.remove(book);
+            author.setBooks(books);
         }
         this.bookRepository.delete(this.getById(id));
     }

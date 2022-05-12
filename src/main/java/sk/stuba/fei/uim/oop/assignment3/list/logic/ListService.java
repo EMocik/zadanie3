@@ -31,26 +31,19 @@ public class ListService implements IListService{
     public ListOfLendedBooks create() {return this.listRepository.save(new ListOfLendedBooks());}
 
     @Override
-    public ListOfLendedBooks getById(Long id){
-        ListOfLendedBooks listOfLendedBooks = this.listRepository.findLendingListById(id);
-        if (listOfLendedBooks == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        return listOfLendedBooks;
+    public ListOfLendedBooks getById(Long id) throws NotFoundException {
+        return this.listRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Override
     public void delete(Long id) throws NotFoundException {
-        ListOfLendedBooks listOfLendedBooks = this.listRepository.findLendingListById(id);
-        if(listOfLendedBooks == null){
-            throw new NotFoundException();
-        }
+        ListOfLendedBooks listOfLendedBooks = this.listRepository.findById(id).orElseThrow(NotFoundException::new);
         listOfLendedBooks.getLendingList().forEach(book -> book.setLendCount(book.getLendCount()-1));
         this.listRepository.delete(listOfLendedBooks);
     }
 
     @Override
-    public void lendTheList(Long id) throws IllegalOperationException {
+    public void lendTheList(Long id) throws IllegalOperationException, NotFoundException {
         ListOfLendedBooks listOfLendedBooks = this.getUnlended(id);
         listOfLendedBooks.setLended(true);
         listOfLendedBooks.getLendingList().forEach(book -> book.setLendCount(book.getLendCount()+1));
@@ -90,7 +83,7 @@ public class ListService implements IListService{
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
-    private ListOfLendedBooks getUnlended(Long id) throws IllegalOperationException {
+    private ListOfLendedBooks getUnlended(Long id) throws IllegalOperationException, NotFoundException {
         ListOfLendedBooks listOfLendedBooks = this.getById(id);
         if (listOfLendedBooks.isLended()) {
             throw new IllegalOperationException();

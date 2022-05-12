@@ -32,7 +32,7 @@ public class ListController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ListResponse getListById(@PathVariable("id") Long id){
+    public ListResponse getListById(@PathVariable("id") Long id) throws NotFoundException{
         return new ListResponse(this.listService.getById(id));
     }
 
@@ -47,12 +47,12 @@ public class ListController {
     }
 
     @GetMapping(value = "/{id}/lend")
-    public void lendTheList(@PathVariable("id") Long id) throws IllegalOperationException {
+    public void lendTheList(@PathVariable("id") Long id) throws IllegalOperationException, NotFoundException {
         this.listService.lendTheList(id);
     }
 
     @DeleteMapping(value = "/{id}/remove")
-    public void deleteFromList(@PathVariable("id") Long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException {
+    public void deleteFromList(@PathVariable("id") Long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException, IllegalOperationException{
         this.listService.deleteFromList(id, bookIDRequest);
     }
 }
