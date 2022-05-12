@@ -46,7 +46,6 @@ public class ListService implements IListService{
             throw new NotFoundException();
         }
         listOfLendedBooks.getLendingList().forEach(book -> book.setLendCount(book.getLendCount()-1));
-        listOfLendedBooks.getLendingList().forEach(book -> book.setAmount(book.getAmount()+1));
         this.listRepository.delete(listOfLendedBooks);
     }
 
@@ -55,7 +54,6 @@ public class ListService implements IListService{
         ListOfLendedBooks listOfLendedBooks = this.getUnlended(id);
         listOfLendedBooks.setLended(true);
         listOfLendedBooks.getLendingList().forEach(book -> book.setLendCount(book.getLendCount()+1));
-        listOfLendedBooks.getLendingList().forEach(book -> book.setAmount(book.getAmount()-1));
         this.listRepository.save(listOfLendedBooks);
     }
 
