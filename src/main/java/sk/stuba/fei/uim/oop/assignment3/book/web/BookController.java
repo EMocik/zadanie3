@@ -40,14 +40,12 @@ public class BookController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookResponse> updateBook(@PathVariable("id") Long id, @RequestBody BookUpdateRequest body) throws NotFoundException {
-
         return new ResponseEntity<>(new BookResponse(this.bookService.update(id, body)), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
     public void deleteBook(@PathVariable("id") Long id) throws NotFoundException {
         this.bookService.delete(id);
-//        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}/amount", produces = MediaType.APPLICATION_JSON_VALUE)

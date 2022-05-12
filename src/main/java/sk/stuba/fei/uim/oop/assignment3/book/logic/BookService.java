@@ -3,7 +3,6 @@ package sk.stuba.fei.uim.oop.assignment3.book.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
-import sk.stuba.fei.uim.oop.assignment3.author.data.IAuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.logic.IAuthorService;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.data.IBookRepository;
@@ -21,9 +20,6 @@ public class BookService implements IBookService {
 
     @Autowired
     private IAuthorService authorService;
-
-    @Autowired
-    private IAuthorRepository authorRepository;
 
     @Override
     public List<Book> getAll() {
@@ -69,12 +65,11 @@ public class BookService implements IBookService {
     public void delete(long id) throws NotFoundException {
         Book book = this.bookRepository.findBookById(id);
         if(book != null){
-            Author author = authorRepository.findAuthorById(book.getAuthor());
+            Author author = authorService.getById(book.getAuthor());
             if(author != null){
                 List<Book> books = author.getBooks();
                 books.remove(book);
                 author.setBooks(books);
-                authorRepository.save(author);
             }
         }
         this.bookRepository.delete(this.getById(id));

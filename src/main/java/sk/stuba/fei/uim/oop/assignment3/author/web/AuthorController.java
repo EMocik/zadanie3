@@ -47,7 +47,6 @@ public class AuthorController {
     @DeleteMapping(value = "/{id}")
     public void deleteAuthorById(@PathVariable("id") Long id) throws NotFoundException{
         this.authorService.delete(id);
-//        return new ResponseEntity(HttpStatus.OK);
     }
 
 }
