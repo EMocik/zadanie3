@@ -12,13 +12,13 @@ public interface IBookService {
 
     Book create(BookRequest bookRequest) throws NotFoundException;
 
-    Book getById(long id) throws NotFoundException;
+    Book getById(Long id) throws NotFoundException;
 
-    Book update(long id, BookUpdateRequest request) throws NotFoundException;
+    Book update(Long id, BookUpdateRequest request) throws NotFoundException;
 
-    void delete(long id) throws NotFoundException;
+    void delete(Long id) throws NotFoundException;
 
-    int getAmount(long id) throws NotFoundException;
+    int getAmount(Long id) throws NotFoundException;
 
     int addAmount(Long id, int amount) throws NotFoundException;
 }

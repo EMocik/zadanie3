@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class ListOfLendedBooks {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +19,7 @@ public class ListOfLendedBooks {
     private boolean lended;
 
     @OneToMany
-    private List<Book> lendingList = new ArrayList<>();
+    private List<Book> lendingList;
 
+    public ListOfLendedBooks(){this.lendingList = new ArrayList<>();}
 }

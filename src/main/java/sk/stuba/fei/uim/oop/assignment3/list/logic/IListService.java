@@ -13,14 +13,14 @@ public interface IListService {
 
     ListOfLendedBooks create();
 
-    ListOfLendedBooks getById(long id);
+    ListOfLendedBooks getById(Long id);
 
-    void delete(long id) throws NotFoundException;
+    void delete(Long id) throws NotFoundException;
 
-    void lendTheList(long id) throws IllegalOperationException;
+    void lendTheList(Long id) throws IllegalOperationException;
 
-    ListOfLendedBooks addToList(long id, BookIDRequest bookIDRequest) throws NotFoundException, IllegalOperationException;
+    ListOfLendedBooks addToList(Long id, BookIDRequest bookIDRequest) throws NotFoundException, IllegalOperationException;
 
-    void deleteFromList(long id, BookIDRequest bookIDRequest) throws NotFoundException;
+    void deleteFromList(Long id, BookIDRequest bookIDRequest) throws NotFoundException;
 
 }

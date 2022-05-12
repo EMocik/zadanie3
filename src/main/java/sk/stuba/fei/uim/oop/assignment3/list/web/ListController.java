@@ -32,12 +32,12 @@ public class ListController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ListResponse getListById(@PathVariable("id") long id){
+    public ListResponse getListById(@PathVariable("id") Long id){
         return new ListResponse(this.listService.getById(id));
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") long id) throws NotFoundException {
+    public void delete(@PathVariable("id") Long id) throws NotFoundException {
         this.listService.delete(id);
     }
 
@@ -52,7 +52,7 @@ public class ListController {
     }
 
     @DeleteMapping(value = "/{id}/remove")
-    public void deleteFromList(@PathVariable("id") long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException {
+    public void deleteFromList(@PathVariable("id") Long id, @RequestBody BookIDRequest bookIDRequest) throws NotFoundException {
         this.listService.deleteFromList(id, bookIDRequest);
     }
 }

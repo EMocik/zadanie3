@@ -12,7 +12,7 @@ public interface IAuthorService {
 
     Author create(AuthorRequest authorRequest);
 
-    Author getById(long id) throws NotFoundException;
+    Author getById(Long id) throws NotFoundException;
 
     Author updateAuthor(Long id, AuthorUpdateRequest authorUpdateRequest) throws NotFoundException;
 

@@ -31,7 +31,7 @@ public class AuthorService implements IAuthorService {
     }
 
     @Override
-    public Author getById(long id) throws NotFoundException {
+    public Author getById(Long id) throws NotFoundException {
         Author author = this.authorRepository.findAuthorById(id);
         if (author == null) {
             throw new NotFoundException();

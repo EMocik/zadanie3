@@ -36,7 +36,7 @@ public class BookService implements IBookService {
 
 
     @Override
-    public Book getById(long id) throws NotFoundException {
+    public Book getById(Long id) throws NotFoundException {
         Book book = this.bookRepository.findBookById(id);
         if (book == null) {
             throw new NotFoundException();
@@ -44,7 +44,7 @@ public class BookService implements IBookService {
         return book;
     }
     @Override
-    public Book update(long id, BookUpdateRequest bookUpdateRequest) throws NotFoundException {
+    public Book update(Long id, BookUpdateRequest bookUpdateRequest) throws NotFoundException {
         Book book = this.getById(id);
         if (bookUpdateRequest.getName() != null) {
             book.setName(bookUpdateRequest.getName());
@@ -62,7 +62,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void delete(long id) throws NotFoundException {
+    public void delete(Long id) throws NotFoundException {
         Book book = this.bookRepository.findBookById(id);
         if(book != null){
             Author author = authorService.getById(book.getAuthor());
@@ -76,7 +76,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public int getAmount(long id) throws NotFoundException {
+    public int getAmount(Long id) throws NotFoundException {
         return this.getById(id).getAmount();
     }
 

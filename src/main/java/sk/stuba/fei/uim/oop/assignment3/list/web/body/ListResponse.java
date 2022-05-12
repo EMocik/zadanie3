@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 public class ListResponse {
-    private final long id;
+    private final Long id;
     private final List<Book> lendingList;
     private final boolean lended;
 
