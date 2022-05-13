@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IListRepository extends JpaRepository<ListOfLendedBooks, Long> {
 
-    ListOfLendedBooks findLendingListById(Long id);
 }

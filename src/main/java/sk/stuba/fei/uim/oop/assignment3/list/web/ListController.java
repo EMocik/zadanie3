@@ -48,7 +48,7 @@ public class ListController {
 
     @GetMapping(value = "/{id}/lend")
     public void lendTheList(@PathVariable("id") Long id) throws IllegalOperationException, NotFoundException {
-        this.listService.lendTheList(id);
+        this.listService. lendTheList(id);
     }
 
     @DeleteMapping(value = "/{id}/remove")

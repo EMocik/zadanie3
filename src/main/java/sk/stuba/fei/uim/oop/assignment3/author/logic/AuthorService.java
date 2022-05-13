@@ -32,22 +32,14 @@ public class AuthorService implements IAuthorService {
 
     @Override
     public Author getById(Long id) throws NotFoundException {
-        Author author = this.authorRepository.findAuthorById(id);
-        if (author == null) {
-            throw new NotFoundException();
-        }
-        return author;
+        return this.authorRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Override
     public Author updateAuthor(Long id, AuthorUpdateRequest authorUpdateRequest) throws NotFoundException {
-        Author author = this.getById(id);
-        if (authorUpdateRequest.getName() != null) {
-            author.setName(authorUpdateRequest.getName());
-        }
-        if (authorUpdateRequest.getSurname() != null) {
-            author.setSurname(authorUpdateRequest.getSurname());
-        }
+        Author author = this.authorRepository.findById(id).orElseThrow(NotFoundException::new);
+        if (authorUpdateRequest.getName() != null) {author.setName(authorUpdateRequest.getName());}
+        if (authorUpdateRequest.getSurname() != null) {author.setSurname(authorUpdateRequest.getSurname());}
         return this.authorRepository.save(author);
     }
 
@@ -60,7 +52,6 @@ public class AuthorService implements IAuthorService {
                 this.bookService.delete(book.getId());
             }
         }
-        author.getBooks().clear();
         this.authorRepository.delete(author);
     }
 
